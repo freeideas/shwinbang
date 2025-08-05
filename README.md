@@ -6,9 +6,19 @@ Run Linux-style scripts on Windows with their native shebang interpreters!
 
 ## What is Shebang?
 
-Did you ever wish you could run some of your `.py` scripts on Windows with `uv run`, and some of them with `python.exe`? Or maybe you want to run `.sh` scripts with `bash.exe`? 
+The fantastic [UV project](https://github.com/astral-sh/uv) revolutionizes Python development by letting you declare dependencies right inside your script comments. No more virtual environments, no more conda, no more pip install - your scripts just work! UV reads the dependencies from comments and automatically manages everything for you.
 
-Associate any file extension on Windows with `shebang.exe`, and it will look at the Linux-style shebang at the top of the file to run that file however you want. Let the file itself decide how it should be run. This will allow you to use exactly the same scripts on Linux and Windows, with no modifications.
+But here's the catch: Windows file associations are limited. You can't associate `.py` files with something like `uv run --script`. Windows only lets you associate extensions with executables, not with command-line arguments.
+
+**Shebang solves this problem and many more.** It's a tiny executable that reads the shebang line (the `#!` at the top of your scripts) and launches your files with whatever command-line you specify. Now your text files can run themselves with any interpreter or tool - UV, Python, Bash, Node.js, or anything else.
+
+This means you can:
+- Have some Python scripts run with `uv run` for automatic dependency management
+- Have other Python scripts run with plain `python.exe` 
+- Run shell scripts with `bash.exe` on Windows
+- Use the exact same scripts on Linux and Windows with zero modifications
+
+The file itself decides how it should run. True cross-platform scripting at last!
 
 ## Features
 
@@ -27,16 +37,24 @@ Associate any file extension on Windows with `shebang.exe`, and it will look at 
 
 ## Examples
 
-### Python Script with UV
+### Python Script with UV (Automatic Dependency Management)
 ```python
 #!/usr/bin/env -S uv run --script --quiet
 # /// script
 # requires-python = ">=3.8"
 # dependencies = [
 #     "click",
+#     "requests",
+#     "pandas",
 # ]
 # ///
-print('hello')
+import click
+import requests
+import pandas as pd
+
+# Dependencies are automatically installed by UV!
+# No virtual environment needed!
+print('All dependencies just work!')
 ```
 
 ### Regular Python Script
