@@ -72,7 +72,7 @@ echo "Running on Windows with bash.exe!"
 ## Installation
 
 1. Download or build `shebang.exe`
-2. Place it in a directory in your PATH (or remember its location)
+2. Place it anywhere on your system (e.g., `C:\Tools\shebang.exe`)
 3. Associate file extensions with shebang.exe:
    - Right-click on a `.py` file → "Open with" → "Choose another app"
    - Browse to `shebang.exe` and select it
