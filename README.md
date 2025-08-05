@@ -73,7 +73,11 @@ echo "Running on Windows with bash.exe!"
 
 1. Download or build `shebang.exe`
 2. Place it anywhere on your system (e.g., `C:\Tools\shebang.exe`)
-3. Associate file extensions with shebang.exe:
+3. Make sure the interpreters you want to use are in your PATH:
+   - For `#!/usr/bin/env python` → `python.exe` must be in PATH
+   - For `#!/usr/bin/env -S uv run` → `uv.exe` must be in PATH
+   - For `#!/bin/bash` → `bash.exe` must be in PATH
+4. Associate file extensions with shebang.exe:
    - Right-click on a `.py` file → "Open with" → "Choose another app"
    - Browse to `shebang.exe` and select it
    - Check "Always use this app to open .py files"
